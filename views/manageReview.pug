@@ -1,0 +1,30 @@
+extends base
+include _sideNav
+
+block content
+  main.main
+    .user-view
+      nav.user-view__menu
+        +sideNav('reviews')
+
+      .user-view__content
+        .user-view__form-container
+          h2.heading-secondary.ma-bt-md Manage reviews
+
+          table.manage-table
+            thead
+              tr
+                th Tour
+                th User
+                th Rating
+                th Review
+                th
+            tbody
+              each review in reviews
+                tr
+                  td= review.tour ? review.tour.name : '—'
+                  td= review.user.name
+                  td= review.rating
+                  td.manage-table__review= review.review
+                  td
+                    button.btn.btn--small.btn--red.btn--delete-review(data-id=review._id) Delete

@@ -1,0 +1,32 @@
+extends base
+include _sideNav
+
+block content
+  main.main
+    .user-view
+      nav.user-view__menu
+        +sideNav('users')
+
+      .user-view__content
+        .user-view__form-container
+          h2.heading-secondary.ma-bt-md Manage users
+
+          table.manage-table
+            thead
+              tr
+                th Name
+                th Email
+                th Role
+                th
+            tbody
+              each u in users
+                tr
+                  td
+                    .manage-table__user
+                      img.manage-table__photo(src=`img/users/${u.photo}`, alt=`${u.name}`)
+                      span= u.name
+                  td= u.email
+                  td= u.role
+                  td
+                    if u._id.toString() !== user._id.toString()
+                      button.btn.btn--small.btn--red.btn--delete-user(data-id=u._id) Delete

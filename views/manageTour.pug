@@ -1,0 +1,64 @@
+extends base
+include _sideNav
+
+block content
+  main.main
+    .user-view
+      nav.user-view__menu
+        +sideNav('tours')
+
+      .user-view__content
+        .user-view__form-container
+          h2.heading-secondary.ma-bt-md Manage tours
+          form.form.form--create-tour
+            .form__group
+              label.form__label(for='name') Tour name
+              input#name.form__input(type='text', required, placeholder='The Forest Hiker')
+            .form__group
+              label.form__label(for='duration') Duration (days)
+              input#duration.form__input(type='number', required, placeholder='5')
+            .form__group
+              label.form__label(for='maxGroupSize') Max group size
+              input#maxGroupSize.form__input(type='number', required, placeholder='25')
+            .form__group
+              label.form__label(for='difficulty') Difficulty
+              select#difficulty.form__input(required)
+                option(value='') Select difficulty
+                option(value='easy') Easy
+                option(value='medium') Medium
+                option(value='difficult') Difficult
+            .form__group
+              label.form__label(for='price') Price (USD)
+              input#price.form__input(type='number', required, placeholder='397')
+            .form__group
+              label.form__label(for='summary') Summary
+              input#summary.form__input(type='text', required)
+            .form__group
+              label.form__label(for='description') Description
+              textarea#description.form__input(rows='5', required)
+            .form__group
+              label.form__label(for='imageCover') Cover image filename
+              input#imageCover.form__input(type='text', value='tour-1-cover.jpg', required)
+            .form__group
+              label.form__label(for='startDate') Next start date
+              input#startDate.form__input(type='date', required)
+            .form__group.right
+              button.btn.btn--green Create new tour
+
+        .line &nbsp;
+
+        .card-container.card-container--2
+          each tour in tours
+            .card
+              .card__header
+                .card__picture
+                  .card__picture-overlay &nbsp;
+                  img.card__picture-img(src=`img/tours/${tour.imageCover}`, alt=`${tour.name}`)
+                h3.heading-tertirary
+                  span= tour.name
+              .card__footer
+                p
+                  span.card__footer-value= `$${tour.price}`
+                  | 
+                  span.card__footer-text per person
+                button.btn.btn--small.btn--red.btn--delete-tour(data-id=tour._id) Delete tour

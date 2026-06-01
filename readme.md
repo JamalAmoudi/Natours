@@ -2,6 +2,13 @@
 
 A modern full-stack tour booking application that enables users to explore, review, and book exciting tours around the world. The platform provides secure authentication, online payment processing, tour management, user reviews, and an intuitive user experience.
 
+here you can see the full website: https://natours-23kc.onrender.com
+for admin user:
+```bash
+email : admin-email@natuors.com
+password: 12345678
+```
+
 ## ✨ Features
 
 ### User Features
